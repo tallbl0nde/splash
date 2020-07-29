@@ -9,38 +9,43 @@ namespace Palette {
         float l;    // Lightness [0, 1]
     };
 
-    // A colour is a simple object which stores an RGB
+    // A colour is a simple object which stores an ARGB
     // value as an integer, but is set/accessed through
     // member functions which operate on the integer.
     // For those who are familiar with Android's ColorInt,
     // this class essentially provides the same thing.
     class Colour {
         private:
-            // RGB colour stored as 0x00RRGGBB
+            // ARGB colour stored as 0xAARRGGBB
             int value;
 
         public:
-            // Constructor takes RGB values (cutoff if outside of 0-255)
-            Colour(int r, int g, int b);
+            // Default constructor initializes to transpatrent black (0)
+            Colour();
+
+            // Constructor takes ARGB values (cutoff if outside of 0-255)
+            Colour(int, int, int, int);
 
             // Returns appropriate component
+            int a();
             int r();
             int g();
             int b();
 
-            // Returns raw RGB value
-            int rgb();
+            // Returns raw value
+            int raw();
 
-            // Converts RGB value to HSL
+            // Converts value to HSL
             HSL hsl();
 
             // Sets appropriate component
-            void setR(int r);
-            void setG(int g);
-            void setB(int b);
+            void setA(int);
+            void setR(int);
+            void setG(int);
+            void setB(int);
 
-            // Set raw RGB value (doesn't check!)
-            void setRGB(int rgb);
+            // Set raw value
+            void setRaw(int);
     };
 };
 

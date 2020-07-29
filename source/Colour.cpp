@@ -4,8 +4,14 @@
 #include <cmath>
 
 namespace Palette {
-    Colour::Colour(int r, int g, int b) {
+    Colour::Colour() {
+        this->value = 0;
+    }
+
+    Colour::Colour(int a, int r, int g, int b) {
         // Ensure values are within range
+        a = (a < 0 ? 0 : a);
+        a = (a > 255 ? 255 : a);
         r = (r < 0 ? 0 : r);
         r = (r > 255 ? 255 : r);
         g = (g < 0 ? 0 : g);
@@ -15,9 +21,14 @@ namespace Palette {
 
         // Encode value
         this->value = 0;
+        this->setA(a);
         this->setR(r);
         this->setG(g);
         this->setB(b);
+    }
+
+    int Colour::a() {
+        return (this->value & 0xff000000) >> 24;
     }
 
     int Colour::r() {
@@ -32,7 +43,7 @@ namespace Palette {
         return (this->value & 0x000000ff);
     }
 
-    int Colour::rgb() {
+    int Colour::raw() {
         return this->value;
     }
 
@@ -85,6 +96,10 @@ namespace Palette {
         return hsl;
     }
 
+    void Colour::setA(int a) {
+        this->value |= (a & 0xff) << 24;
+    }
+
     void Colour::setR(int r) {
         this->value |= (r & 0xff) << 16;
     }
@@ -97,7 +112,7 @@ namespace Palette {
         this->value |= (b & 0xff);
     }
 
-    void Colour::setRGB(int rgb) {
-        this->value = rgb;
+    void Colour::setRaw(int raw) {
+        this->value = raw;
     }
 };
