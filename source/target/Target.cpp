@@ -1,28 +1,28 @@
 #include "target/Target.hpp"
 
-namespace Palette::Target {
-    // Constant values/indexes
-    static float TARGET_DARK_LUMA = 0.26f;
-    static float MAX_DARK_LUMA = 0.45f;
-    static float MIN_LIGHT_LUMA = 0.55f;
-    static float TARGET_LIGHT_LUMA = 0.74f;
-    static float MIN_NORMAL_LUMA = 0.3f;
-    static float TARGET_NORMAL_LUMA = 0.5f;
-    static float MAX_NORMAL_LUMA = 0.7f;
-    static float TARGET_MUTED_SATURATION = 0.3f;
-    static float MAX_MUTED_SATURATION = 0.4f;
-    static float TARGET_VIBRANT_SATURATION = 1.0f;
-    static float MIN_VIBRANT_SATURATION = 0.35f;
-    static float WEIGHT_SATURATION = 0.24f;
-    static float WEIGHT_LUMA = 0.52f;
-    static float WEIGHT_POPULATION = 0.24f;
-    static int INDEX_MIN = 0;
-    static int INDEX_TARGET = 1;
-    static int INDEX_MAX = 2;
-    static int INDEX_WEIGHT_SAT = 0;
-    static int INDEX_WEIGHT_LUMA = 1;
-    static int INDEX_WEIGHT_POP = 2;
+// Constant values/indexes
+#define TARGET_DARK_LUMA 0.26f
+#define MAX_DARK_LUMA 0.45f
+#define MIN_LIGHT_LUMA 0.55f
+#define TARGET_LIGHT_LUMA 0.74f
+#define MIN_NORMAL_LUMA 0.3f
+#define TARGET_NORMAL_LUMA 0.5f
+#define MAX_NORMAL_LUMA 0.7f
+#define TARGET_MUTED_SATURATION 0.3f
+#define MAX_MUTED_SATURATION 0.4f
+#define TARGET_VIBRANT_SATURATION 1.0f
+#define MIN_VIBRANT_SATURATION 0.35f
+#define WEIGHT_SATURATION 0.24f
+#define WEIGHT_LUMA 0.52f
+#define WEIGHT_POPULATION 0.24f
+#define INDEX_MIN 0
+#define INDEX_TARGET 1
+#define INDEX_MAX 2
+#define INDEX_WEIGHT_SAT 0
+#define INDEX_WEIGHT_LUMA 1
+#define INDEX_WEIGHT_POP 2
 
+namespace Palette::Target {
     void Target::setDefaultLightLightnessValues() {
         this->lightnessTargets[INDEX_MIN] = MIN_LIGHT_LUMA;
         this->lightnessTargets[INDEX_TARGET] = TARGET_LIGHT_LUMA;

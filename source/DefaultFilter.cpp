@@ -1,15 +1,16 @@
 #include "DefaultFilter.hpp"
 
-namespace Palette {
-    const float DefaultFilter::BLACK_MAX_LIGHTNESS = 0.05f;
-    const float DefaultFilter::WHITE_MIN_LIGHTNESS = 0.95f;
+// Constants
+#define BLACK_MAX_LIGHTNESS 0.05f;
+#define WHITE_MIN_LIGHTNESS 0.95f;
 
+namespace Palette {
     bool DefaultFilter::isBlack(HSL & hsl) {
-        return hsl.l <= this->BLACK_MAX_LIGHTNESS;
+        return hsl.l <= BLACK_MAX_LIGHTNESS;
     }
 
     bool DefaultFilter::isWhite(HSL & hsl) {
-        return hsl.l >= this->WHITE_MIN_LIGHTNESS;
+        return hsl.l >= WHITE_MIN_LIGHTNESS;
     }
 
     bool DefaultFilter::isNearRedILine(HSL & hsl) {

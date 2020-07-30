@@ -8,9 +8,6 @@ namespace Palette {
     // Represents a colour swatch generated from an image's palette.
     class Swatch {
         private:
-            static const float MIN_CONTRAST_BODY_TEXT;
-            static const float MIN_CONTRAST_TITLE_TEXT;
-
             // Number of pixels that formed this swatch
             int population;
 

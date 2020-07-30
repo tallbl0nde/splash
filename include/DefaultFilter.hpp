@@ -8,10 +8,6 @@ namespace Palette {
     // Allows any colour that isn't black, white or near red side of I line.
     class DefaultFilter : public Filter {
         private:
-            // Values used to determine black/white boundaries
-            static const float BLACK_MAX_LIGHTNESS;
-            static const float WHITE_MIN_LIGHTNESS;
-
             // Returns true if the colour is close to black
             bool isBlack(HSL &);
             // Returns true if the colour is close to white

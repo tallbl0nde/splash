@@ -1,6 +1,10 @@
 #include "ColourUtils.hpp"
 #include "Swatch.hpp"
 
+// Constants
+#define MIN_CONTRAST_BODY_TEXT 4.5f
+#define MIN_CONTRAST_TITLE_TEXT 3.0f
+
 // Helper function to convert integer to hexadecimal string
 static std::string intToHex(int i) {
     std::string str = "";
@@ -28,10 +32,6 @@ namespace Palette {
     // Colours
     static Colour COLOUR_BLACK = Colour(255, 0, 0, 0);
     static Colour COLOUR_WHITE = Colour(255, 255, 255, 255);
-
-    // Constants
-    const float Swatch::MIN_CONTRAST_BODY_TEXT = 4.5f;
-    const float Swatch::MIN_CONTRAST_TITLE_TEXT = 3.0f;
 
     void Swatch::generateColours() {
         if (!this->coloursGenerated) {
