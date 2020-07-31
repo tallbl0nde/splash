@@ -7,7 +7,7 @@
 #define QUANTIZE_WORD_WIDTH 5
 #define QUANTIZE_WORD_MASK ((1 << QUANTIZE_WORD_WIDTH) - 1)
 
-namespace Palette {
+namespace Splash {
     ColourCutQuantizer::Vbox::Vbox(ColourCutQuantizer * q, size_t lower, size_t upper) {
         this->ccq = q;
         this->lowerIndex = lower;

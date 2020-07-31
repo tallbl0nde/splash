@@ -1,9 +1,9 @@
-#ifndef PALETTE_FILTER_HPP
-#define PALETTE_FILTER_HPP
+#ifndef SPLASH_FILTER_HPP
+#define SPLASH_FILTER_HPP
 
 #include "Colour.hpp"
 
-namespace Palette {
+namespace Splash {
     // A filter provides a mechanism for controlling which colours are valid
     // within
     class Filter {

@@ -1,6 +1,6 @@
 #include "Filter.hpp"
 
-namespace Palette {
+namespace Splash {
     Filter::~Filter() {
 
     }

@@ -1,9 +1,9 @@
-#ifndef PALETTE_COLOURUTILS_HPP
-#define PALETTE_COLOURUTILS_HPP
+#ifndef SPLASH_COLOURUTILS_HPP
+#define SPLASH_COLOURUTILS_HPP
 
 #include "Colour.hpp"
 
-namespace Palette::ColourUtils {
+namespace Splash::ColourUtils {
     // Struct representing colour value in CIE XYZ
     struct XYZ {
         double x;

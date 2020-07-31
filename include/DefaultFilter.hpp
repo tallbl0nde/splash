@@ -1,9 +1,9 @@
-#ifndef PALETTE_DEFAULTFILTER_HPP
-#define PALETTE_DEFAULTFILTER_HPP
+#ifndef SPLASH_DEFAULTFILTER_HPP
+#define SPLASH_DEFAULTFILTER_HPP
 
 #include "Filter.hpp"
 
-namespace Palette {
+namespace Splash {
     // Inherits and extends filter to form the default filter.
     // Allows any colour that isn't black, white or near red side of I line.
     class DefaultFilter : public Filter {

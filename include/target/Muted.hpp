@@ -1,9 +1,9 @@
-#ifndef PALETTE_TARGET_MUTED_HPP
-#define PALETTE_TARGET_MUTED_HPP
+#ifndef SPLASH_TARGET_MUTED_HPP
+#define SPLASH_TARGET_MUTED_HPP
 
 #include "target/Target.hpp"
 
-namespace Palette::Target {
+namespace Splash::Target {
     // Inherits Target to invoke methods to create the static MUTED target
     class Muted : public Target {
         public:

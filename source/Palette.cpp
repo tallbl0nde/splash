@@ -15,7 +15,7 @@
 #define DEFAULT_RESIZE_BITMAP_AREA (112 * 112)
 #define DEFAULT_CALCULATE_NUMBER_COLORS 16
 
-namespace Palette {
+namespace Splash {
     Palette::Palette(const std::vector<Swatch> & s, const std::vector<Target::Target> & t) {
         this->swatches = s;
         this->targets = t;

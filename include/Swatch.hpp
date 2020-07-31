@@ -1,10 +1,10 @@
-#ifndef PALETTE_SWATCH_HPP
-#define PALETTE_SWATCH_HPP
+#ifndef SPLASH_SWATCH_HPP
+#define SPLASH_SWATCH_HPP
 
 #include "Colour.hpp"
 #include <string>
 
-namespace Palette {
+namespace Splash {
     // Represents a colour swatch generated from an image's palette.
     class Swatch {
         private:

@@ -1,9 +1,9 @@
-#ifndef PALETTE_TARGET_TARGET_HPP
-#define PALETTE_TARGET_TARGET_HPP
+#ifndef SPLASH_TARGET_TARGET_HPP
+#define SPLASH_TARGET_TARGET_HPP
 
 #include <array>
 
-namespace Palette::Target {
+namespace Splash::Target {
     // A Target allows custom selection of colours in a Palette's generation
     class Target {
         private:

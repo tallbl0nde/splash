@@ -1,11 +1,11 @@
-#ifndef PALETTE_BITMAP_HPP
-#define PALETTE_BITMAP_HPP
+#ifndef SPLASH_BITMAP_HPP
+#define SPLASH_BITMAP_HPP
 
 #include "Colour.hpp"
 #include <cstddef>
 #include <vector>
 
-namespace Palette {
+namespace Splash {
     // A bitmap in this context is essentially a 2D array (using vectors)
     // of Colour objects which represents the pixels of an image
     class Bitmap {

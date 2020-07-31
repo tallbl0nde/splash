@@ -1,7 +1,7 @@
 #include "Bitmap.hpp"
 #include <cmath>
 
-namespace Palette {
+namespace Splash {
     static Colour COLOUR_WHITE = Colour(255, 255, 255, 255);
 
     Bitmap::Bitmap() {

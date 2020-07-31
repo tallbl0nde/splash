@@ -4,7 +4,7 @@
 #define BLACK_MAX_LIGHTNESS 0.05f;
 #define WHITE_MIN_LIGHTNESS 0.95f;
 
-namespace Palette {
+namespace Splash {
     bool DefaultFilter::isBlack(HSL & hsl) {
         return hsl.l <= BLACK_MAX_LIGHTNESS;
     }

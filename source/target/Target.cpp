@@ -22,7 +22,7 @@
 #define INDEX_WEIGHT_LUMA 1
 #define INDEX_WEIGHT_POP 2
 
-namespace Palette::Target {
+namespace Splash::Target {
     void Target::setDefaultLightLightnessValues() {
         this->lightnessTargets[INDEX_MIN] = MIN_LIGHT_LUMA;
         this->lightnessTargets[INDEX_TARGET] = TARGET_LIGHT_LUMA;

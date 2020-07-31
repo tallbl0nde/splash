@@ -1,6 +1,6 @@
 #include "target/Muted.hpp"
 
-namespace Palette::Target {
+namespace Splash::Target {
     Muted::Muted() : Target() {
         this->setDefaultNormalLightnessValues();
         this->setDefaultMutedSaturationValues();

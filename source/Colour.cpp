@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace Palette {
+namespace Splash {
     Colour::Colour() {
         this->value = 0;
     }

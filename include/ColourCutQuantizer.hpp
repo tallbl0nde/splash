@@ -1,12 +1,12 @@
-#ifndef PALETTE_COLOURCUTQUANTIZER_HPP
-#define PALETTE_COLOURCUTQUANTIZER_HPP
+#ifndef SPLASH_COLOURCUTQUANTIZER_HPP
+#define SPLASH_COLOURCUTQUANTIZER_HPP
 
 #include "Filter.hpp"
 #include "Swatch.hpp"
 #include <queue>
 #include <vector>
 
-namespace Palette {
+namespace Splash {
     // Dimension/component of RGB int to operate on
     enum class Dimension {
         Red,

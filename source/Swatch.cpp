@@ -28,7 +28,7 @@ static std::string intToHex(int i) {
     return str;
 }
 
-namespace Palette {
+namespace Splash {
     // Colours
     static Colour COLOUR_BLACK = Colour(255, 0, 0, 0);
     static Colour COLOUR_WHITE = Colour(255, 255, 255, 255);

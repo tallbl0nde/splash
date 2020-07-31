@@ -1,9 +1,9 @@
-#ifndef PALETTE_COLOUR_HPP
-#define PALETTE_COLOUR_HPP
+#ifndef SPLASH_COLOUR_HPP
+#define SPLASH_COLOUR_HPP
 
 #include <string>
 
-namespace Palette {
+namespace Splash {
     // Struct containing HSL values (returned by class)
     struct HSL {
         float h;    // Hue [0, 360]

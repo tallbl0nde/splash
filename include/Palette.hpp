@@ -1,5 +1,5 @@
-#ifndef PALETTE_PALETTE_HPP
-#define PALETTE_PALETTE_HPP
+#ifndef SPLASH_PALETTE_HPP
+#define SPLASH_PALETTE_HPP
 
 #include "Bitmap.hpp"
 #include "Filter.hpp"
@@ -16,8 +16,8 @@ inline void hash_combine(size_t & seed, const T & v) {
 
 // Hashing function for a Target object
 namespace std {
-    template<> struct hash<::Palette::Target::Target> {
-        const size_t operator()(const ::Palette::Target::Target & t) const {
+    template<> struct hash<Splash::Target::Target> {
+        const size_t operator()(const Splash::Target::Target & t) const {
             size_t val = 0;
             hash_combine(val, t.getMinimumLightness());
             hash_combine(val, t.getTargetLightness());
@@ -34,7 +34,7 @@ namespace std {
     };
 };
 
-namespace Palette {
+namespace Splash {
     // Extracts prominent colours from an image. A number of colours with different profiles
     // are extracted:
     // - Vibrant                - Muted

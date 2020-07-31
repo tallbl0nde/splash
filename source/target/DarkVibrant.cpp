@@ -1,6 +1,6 @@
 #include "target/DarkVibrant.hpp"
 
-namespace Palette::Target {
+namespace Splash::Target {
     DarkVibrant::DarkVibrant() : Target() {
         this->setDefaultDarkLightnessValues();
         this->setDefaultVibrantSaturationValues();

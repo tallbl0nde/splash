@@ -2,7 +2,7 @@
 #include <cmath>
 #include "ColourUtils.hpp"
 
-namespace Palette::ColourUtils {
+namespace Splash::ColourUtils {
     // Constants
     static const int MIN_ALPHA_SEARCH_MAX_ITERATIONS = 10;
     static const int MIN_ALPHA_SEARCH_PRECISION = 1;
