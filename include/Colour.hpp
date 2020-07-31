@@ -1,6 +1,8 @@
 #ifndef PALETTE_COLOUR_HPP
 #define PALETTE_COLOUR_HPP
 
+#include <string>
+
 namespace Palette {
     // Struct containing HSL values (returned by class)
     struct HSL {
@@ -46,6 +48,9 @@ namespace Palette {
 
             // Set raw value
             void setRaw(int);
+
+            // Print a string describing the contents
+            std::string toString();
     };
 };
 

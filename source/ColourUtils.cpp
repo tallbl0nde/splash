@@ -24,7 +24,7 @@ namespace Palette::ColourUtils {
         return (std::max(lum1, lum2) / std::min(lum1, lum2));
     }
 
-    int calculateMinimumAlpha(Colour & fg, Colour & bg, int ratio) {
+    int calculateMinimumAlpha(Colour & fg, Colour & bg, float ratio) {
         // Check background is not translucent
         // Official library throws an exception here, instead we'll return -1
         if (bg.a() != 255) {

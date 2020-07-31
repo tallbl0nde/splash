@@ -18,7 +18,7 @@ namespace Palette {
         for (size_t y = 0; y < h; y++) {
             this->grid.push_back(std::vector<Colour>());
             for (size_t x = 0; x < w; x++) {
-                this->grid[y][x] = COLOUR_WHITE;
+                this->grid[y].push_back(COLOUR_WHITE);
             }
         }
 

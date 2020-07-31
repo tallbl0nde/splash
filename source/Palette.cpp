@@ -11,6 +11,10 @@
 #include <cmath>
 #include <limits>
 
+// Constants
+#define DEFAULT_RESIZE_BITMAP_AREA (112 * 112)
+#define DEFAULT_CALCULATE_NUMBER_COLORS 16
+
 namespace Palette {
     Palette::Palette(const std::vector<Swatch> & s, const std::vector<Target::Target> & t) {
         this->swatches = s;
@@ -203,8 +207,8 @@ namespace Palette {
         this->region = Region{0, 0, b.getWidth(), b.getHeight()};
         this->swatches.clear();
 
-        this->maxColours = 0;
-        this->resizeArea = 0;
+        this->maxColours = DEFAULT_RESIZE_BITMAP_AREA;
+        this->resizeArea = DEFAULT_CALCULATE_NUMBER_COLORS;
 
         // Add default targets
         this->targets.push_back(Target::VIBRANT);
@@ -291,7 +295,7 @@ namespace Palette {
         return *this;
     }
 
-    Palette Palette::Builder::generate() {
+    std::shared_ptr<Palette> Palette::Builder::generate() {
         std::vector<Swatch> sws;
 
         // If we have a bitmap use quantization to reduce the number of colours
@@ -319,8 +323,8 @@ namespace Palette {
         }
 
         // Create Palette using swatches
-        Palette p = Palette(sws, this->targets);
-        p.generate();
+        std::shared_ptr<Palette> p = std::shared_ptr<Palette>(new Palette(sws, this->targets));
+        p->generate();
         return p;
     }
 
@@ -328,5 +332,9 @@ namespace Palette {
         for (size_t i = 0; i < this->filters.size(); i++) {
             delete this->filters[i];
         }
+    }
+
+    Palette::Builder Palette::from(const Bitmap & b) {
+        return Builder(b);
     }
 };

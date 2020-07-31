@@ -5,6 +5,7 @@
 #include "Filter.hpp"
 #include "Swatch.hpp"
 #include "target/Target.hpp"
+#include <memory>
 #include <unordered_map>
 
 // boost::hash_combine
@@ -124,9 +125,6 @@ namespace Palette {
                         size_t y2;
                     };
 
-                    // Palette object which is being built
-                    Palette * palette;
-
                     // List of filters
                     std::vector<Filter *> filters;
 
@@ -192,11 +190,16 @@ namespace Palette {
 
                     // Generate and return the generated Palette
                     // This is slow - so preferably use a separate thread!
-                    Palette generate();
+                    // The returned pointer must be deleted!
+                    std::shared_ptr<Palette> generate();
 
                     // Destructor deletes any added filters
                     ~Builder();
             };
+
+            // The actual method used to create a Palette from a bitmap
+            // Returns builder object which can be used to customize generation
+            static Builder from(const Bitmap &);
     };
 };
 
