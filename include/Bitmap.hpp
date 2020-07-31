@@ -10,6 +10,9 @@ namespace Palette {
     // of Colour objects which represents the pixels of an image
     class Bitmap {
         private:
+            // Is this bitmap valid
+            bool valid;
+
             // Actual 2D vector forming grid
             std::vector< std::vector<Colour> > grid;
 
@@ -18,16 +21,22 @@ namespace Palette {
             size_t width;
 
         public:
+            // Instantiate an invalid bitmap (cannot change to valid even by changing dimensions)
+            Bitmap();
+
             // Create a bitmap with the given dimensions
             Bitmap(size_t, size_t);
 
+            // Return if the bitmap is valid
+            bool isValid() const;
+
             // Return an individual pixel in the bitmap
             // Returns white with alpha 255 if outside of boundaries
-            Colour getPixel(size_t, size_t);
+            Colour getPixel(size_t, size_t) const;
 
             // Return a 1D vector containing the pixels in the given region
             // Ignores any attempts to read outside of bounds (i.e. skips to next row/column)
-            std::vector<Colour> getPixels(size_t, size_t, size_t, size_t);
+            std::vector<Colour> getPixels(size_t, size_t, size_t, size_t) const;
 
             // Set an individual pixel in the bitmap
             // Does nothing if outside bounds
@@ -40,8 +49,8 @@ namespace Palette {
             size_t setPixels(std::vector<Colour> &, size_t, size_t, size_t, size_t);
 
             // Return width/height of bitmap
-            size_t getHeight();
-            size_t getWidth();
+            size_t getHeight() const;
+            size_t getWidth() const;
 
             // Set width/height of bitmap
             // If size is increased, new pixels are set to white
@@ -50,7 +59,7 @@ namespace Palette {
 
             // Return a scaled version of this bitmap using nearest neighbour interpolation
             // Given desired width and height
-            Bitmap createScaledBitmap(size_t, size_t);
+            Bitmap createScaledBitmap(size_t, size_t) const;
     };
 };
 

@@ -81,18 +81,27 @@ namespace Palette {
         }
     }
 
+    Swatch::Swatch() {
+        this->valid = false;
+    }
+
     Swatch::Swatch(Colour c, int pop) {
         this->colour = c;
         this->colour.setA(0);
         this->population = pop;
         this->coloursGenerated = false;
+        this->valid = true;
     }
 
-    Colour Swatch::getColour() {
+    bool Swatch::isValid() const {
+        return this->valid;
+    }
+
+    Colour Swatch::getColour() const {
         return this->colour;
     }
 
-    int Swatch::getPopulation() {
+    int Swatch::getPopulation() const {
         return this->population;
     }
 
@@ -106,7 +115,7 @@ namespace Palette {
         return this->bodyTextColour;
     }
 
-    std::string Swatch::toString() {
+    std::string Swatch::toString() const {
         HSL hsl = this->colour.hsl();
         std::string str = "[RGB: #" + intToHex(this->colour.raw()) + "] ";
         str += "[HSL: " + std::to_string(hsl.h) + ", " + std::to_string(hsl.s) + ", " + std::to_string(hsl.l) + "] ";

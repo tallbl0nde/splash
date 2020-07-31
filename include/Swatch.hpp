@@ -8,6 +8,9 @@ namespace Palette {
     // Represents a colour swatch generated from an image's palette.
     class Swatch {
         private:
+            // Is this swatch valid?
+            bool valid;
+
             // Number of pixels that formed this swatch
             int population;
 
@@ -23,14 +26,20 @@ namespace Palette {
             void generateColours();
 
         public:
+            // Creates an invalid swatch
+            Swatch();
+
             // Constructor takes colour and population
             Swatch(Colour, int);
 
+            // Returns if the swatch is valid
+            bool isValid() const;
+
             // Returns the swatch's colour
-            Colour getColour();
+            Colour getColour() const;
 
             // Returns number of pixels represented by swatch
-            int getPopulation();
+            int getPopulation() const;
 
             // Returns an appropriate colour to use for any title text
             // to display on top of the swatch's colour
@@ -41,7 +50,7 @@ namespace Palette {
             Colour getBodyTextColour();
 
             // Return the contents of the swatch as a string
-            std::string toString();
+            std::string toString() const;
     };
 }
 

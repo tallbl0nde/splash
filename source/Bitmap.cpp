@@ -4,6 +4,10 @@
 namespace Palette {
     static Colour COLOUR_WHITE = Colour(255, 255, 255, 255);
 
+    Bitmap::Bitmap() {
+        this->valid = false;
+    }
+
     Bitmap::Bitmap(size_t w, size_t h) {
         // Set dimensions
         this->height = h;
@@ -17,9 +21,15 @@ namespace Palette {
                 this->grid[y][x] = COLOUR_WHITE;
             }
         }
+
+        this->valid = true;
     }
 
-    Colour Bitmap::getPixel(size_t x, size_t y) {
+    bool Bitmap::isValid() const {
+        return this->valid;
+    }
+
+    Colour Bitmap::getPixel(size_t x, size_t y) const {
         if (y < this->grid.size()) {
             if (x < this->grid[y].size()) {
                 return this->grid[y][x];
@@ -29,7 +39,7 @@ namespace Palette {
         return COLOUR_WHITE;
     }
 
-    std::vector<Colour> Bitmap::getPixels(size_t x, size_t y, size_t w, size_t h) {
+    std::vector<Colour> Bitmap::getPixels(size_t x, size_t y, size_t w, size_t h) const {
         std::vector<Colour> v;
 
         // Ensure width and height are within bounds while checking
@@ -67,11 +77,11 @@ namespace Palette {
         return nextIdx;
     }
 
-    size_t Bitmap::getHeight() {
+    size_t Bitmap::getHeight() const {
         return this->height;
     }
 
-    size_t Bitmap::getWidth() {
+    size_t Bitmap::getWidth() const {
         return this->width;
     }
 
@@ -114,7 +124,7 @@ namespace Palette {
         this->width = w;
     }
 
-    Bitmap Bitmap::createScaledBitmap(size_t nw, size_t nh) {
+    Bitmap Bitmap::createScaledBitmap(size_t nw, size_t nh) const {
         // Create new bitmap
         Bitmap b = Bitmap(nw, nh);
 

@@ -27,16 +27,16 @@ namespace Palette {
             Colour(int, int, int, int);
 
             // Returns appropriate component
-            int a();
-            int r();
-            int g();
-            int b();
+            int a() const;
+            int r() const;
+            int g() const;
+            int b() const;
 
             // Returns raw value
-            int raw();
+            int raw() const;
 
             // Converts value to HSL
-            HSL hsl();
+            HSL hsl() const;
 
             // Sets appropriate component
             void setA(int);

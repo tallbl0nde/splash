@@ -38,32 +38,32 @@ namespace Palette::Target {
             Target(const Target *);
 
             // Returns the minimum saturation value of the target
-            float getMinimumSaturation();
+            float getMinimumSaturation() const;
             // Returns the target saturation value for the target
-            float getTargetSaturation();
+            float getTargetSaturation() const;
             // Returns the maximum saturation value of this target
-            float getMaximumSaturation();
+            float getMaximumSaturation() const;
             // Return the weight of importance the target places on
             // the image's colour saturation
-            float getSaturationWeight();
+            float getSaturationWeight() const;
 
             // Returns the minimum lightness value of the target
-            float getMinimumLightness();
+            float getMinimumLightness() const;
             // Returns the target lightness value for the target
-            float getTargetLightness();
+            float getTargetLightness() const;
             // Returns the maximum lightness value of this target
-            float getMaximumLightness();
+            float getMaximumLightness() const;
             // Return the weight of importance the target places on
             // the image's colour lightness
-            float getLightnessWeight();
+            float getLightnessWeight() const;
 
             // Return the weight of importance the target places on
             // the image's colour population
-            float getPopulationWeight();
+            float getPopulationWeight() const;
 
             // Return whether any colour selected for this target is
             // exclusive to the target
-            bool isExclusive();
+            bool isExclusive() const;
 
             // Normalize the target's weights
             void normalizeWeights();
@@ -115,6 +115,8 @@ namespace Palette::Target {
                     ~Builder();
             };
 
+        // Equality operator
+        bool operator==(const Target) const;
     };
 
 };

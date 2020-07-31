@@ -79,43 +79,43 @@ namespace Palette::Target {
         arr[INDEX_MAX] = 1.0f;
     }
 
-    float Target::getMinimumSaturation() {
+    float Target::getMinimumSaturation() const {
         return this->saturationTargets[INDEX_MIN];
     }
 
-    float Target::getTargetSaturation() {
+    float Target::getTargetSaturation() const {
         return this->saturationTargets[INDEX_TARGET];
     }
 
-    float Target::getMaximumSaturation() {
+    float Target::getMaximumSaturation() const {
         return this->saturationTargets[INDEX_MAX];
     }
 
-    float Target::getSaturationWeight() {
+    float Target::getSaturationWeight() const {
         return this->weights[INDEX_WEIGHT_SAT];
     }
 
-    float Target::getMinimumLightness() {
+    float Target::getMinimumLightness() const {
         return this->lightnessTargets[INDEX_MIN];
     }
 
-    float Target::getTargetLightness() {
+    float Target::getTargetLightness() const {
         return this->lightnessTargets[INDEX_TARGET];
     }
 
-    float Target::getMaximumLightness() {
+    float Target::getMaximumLightness() const {
         return this->lightnessTargets[INDEX_MAX];
     }
 
-    float Target::getLightnessWeight() {
+    float Target::getLightnessWeight() const {
         return this->weights[INDEX_WEIGHT_LUMA];
     }
 
-    float Target::getPopulationWeight() {
+    float Target::getPopulationWeight() const {
         return this->weights[INDEX_WEIGHT_POP];
     }
 
-    bool Target::isExclusive() {
+    bool Target::isExclusive() const {
         return this->isExclusive_;
     }
 
@@ -200,5 +200,21 @@ namespace Palette::Target {
 
     Target::Builder::~Builder() {
         delete this->target;
+    }
+
+    bool Target::operator==(const Target t) const {
+        for (size_t i = 0; i < 3; i++) {
+            if (this->lightnessTargets[i] != t.lightnessTargets[i]) {
+                return false;
+            }
+            if (this->saturationTargets[i] != t.saturationTargets[i]) {
+                return false;
+            }
+            if (this->weights[i] != t.weights[i]) {
+                return false;
+            }
+        }
+
+        return (this->isExclusive_ == t.isExclusive_);
     }
 };

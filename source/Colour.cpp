@@ -27,27 +27,27 @@ namespace Palette {
         this->setB(b);
     }
 
-    int Colour::a() {
+    int Colour::a() const {
         return (this->value & 0xff000000) >> 24;
     }
 
-    int Colour::r() {
+    int Colour::r() const {
         return (this->value & 0x00ff0000) >> 16;
     }
 
-    int Colour::g() {
+    int Colour::g() const {
         return (this->value & 0x0000ff00) >> 8;
     }
 
-    int Colour::b() {
+    int Colour::b() const {
         return (this->value & 0x000000ff);
     }
 
-    int Colour::raw() {
+    int Colour::raw() const {
         return this->value;
     }
 
-    HSL Colour::hsl() {
+    HSL Colour::hsl() const {
         // Struct to return
         HSL hsl;
 
