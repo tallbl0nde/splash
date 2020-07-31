@@ -61,31 +61,26 @@ namespace Splash {
         float min = std::min(std::min(fr, fg), fb);
         float delta = max - min;
 
-        // Determine HSL values
-        if (delta > 0) {
-            // Hue
-            if (max == fr) {
-                hsl.h = 60 * std::fmod(((fg - fb) / delta), 6);
-            } else if (max == fg) {
-                hsl.h = 60 * (((fb - fr)/delta) + 2);
-            } else if (max == fb) {
-                hsl.h = 60 * (((fr - fg)/delta) + 4);
-            }
+        // Luminance
+        hsl.l = (max+min)/2;
 
-            // Saturation
-            if (max > 0) {
-                hsl.s = delta/max;
-            } else {
-                hsl.s = 0;
-            }
-
-            // Lightness
-            hsl.l = max;
+        // Saturation
+        if (delta == 0) {
+            hsl.s = 0;
+            hsl.h = 0;
+            return hsl;
 
         } else {
-            hsl.h = 0;
-            hsl.s = 0;
-            hsl.l = max;
+            hsl.s = delta/(1-std::abs(2*hsl.l-1));
+        }
+
+        // Hue
+        if (max == fr) {
+            hsl.h = 60 * std::fmod(((fg - fb) / delta), 6);
+        } else if (max == fg) {
+            hsl.h = 60 * (((fb - fr)/delta) + 2);
+        } else if (max == fb) {
+            hsl.h = 60 * (((fr - fg)/delta) + 4);
         }
 
         // Ensure hue is positive
