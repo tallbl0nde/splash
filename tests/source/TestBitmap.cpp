@@ -25,7 +25,7 @@ TEST_CASE("Bitmap: A new bitmap is filled with white", "[bitmap]") {
     bool good = true;
     std::vector<Colour> pixels = b.getPixels(0, 0, 50, 50);
     for (size_t i = 0; i < pixels.size(); i++) {
-        if (pixels[i].raw() != static_cast<int>(0xffffffff)) {
+        if (pixels[i].raw() != (0xffffffff)) {
             good = false;
             break;
         }
@@ -36,7 +36,7 @@ TEST_CASE("Bitmap: A new bitmap is filled with white", "[bitmap]") {
 TEST_CASE("Bitmap: Reading a single pixel outside of the bitmap returns white", "[bitmap]") {
     Bitmap b = Bitmap(10, 10);
 
-    REQUIRE(b.getPixel(20, 20).raw() == static_cast<int>(0xffffffff));
+    REQUIRE(b.getPixel(20, 20).raw() == (0xffffffff));
 }
 
 TEST_CASE("Bitmap: Reading multiple pixels outside the bitmap skips to next pixel", "[bitmap]") {
@@ -71,7 +71,7 @@ TEST_CASE("Bitmap: Can read/write individual pixels", "[bitmap]") {
 
     SECTION("Within range should change") {
         b.setPixel(c, 15, 15);
-        REQUIRE(b.getPixel(15, 15).raw() == static_cast<int>(0x0aff0014));
+        REQUIRE(b.getPixel(15, 15).raw() == (0x0aff0014));
     }
 
     SECTION("Outside range should do nothing") {

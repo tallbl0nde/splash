@@ -6,12 +6,12 @@ using namespace Splash;
 
 TEST_CASE("Colour: Should default to fully transparent black (0x00000000)", "[colour]") {
     Colour c = Colour();
-    REQUIRE(c.raw() == static_cast<int>(0x00000000));
+    REQUIRE(c.raw() == (0x00000000));
 }
 
 TEST_CASE("Colour: Raw value stored in the format ARGB", "[colour]") {
     Colour c = Colour(0xdd, 0xaa, 0x55, 0x12);
-    REQUIRE(c.raw() == static_cast<int>(0xddaa5512));
+    REQUIRE(c.raw() == (0xddaa5512));
 }
 
 TEST_CASE("Colour: Component methods return correct component value", "[colour]") {
@@ -84,8 +84,8 @@ TEST_CASE("Colour: Correctly sets each component", "[colour]") {
 
 TEST_CASE("Colour: Updates raw value correctly", "[colour]") {
     Colour c = Colour(255, 255, 255, 255);
-    REQUIRE(c.raw() == static_cast<int>(0xffffffff));
+    REQUIRE(c.raw() == (0xffffffff));
 
     c.setRaw(0xabcdef12);
-    REQUIRE(c.raw() == static_cast<int>(0xabcdef12));
+    REQUIRE(c.raw() == (0xabcdef12));
 }
