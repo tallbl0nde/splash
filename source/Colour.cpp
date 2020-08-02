@@ -43,7 +43,7 @@ namespace Splash {
         return (this->value & 0x000000ff);
     }
 
-    int Colour::raw() const {
+    unsigned int Colour::raw() const {
         return this->value;
     }
 
@@ -52,9 +52,9 @@ namespace Splash {
         HSL hsl;
 
         // Convert from [0, 255] to [0, 1]
-        float fr = this->r()/255.0;
-        float fg = this->g()/255.0;
-        float fb = this->b()/255.0;
+        float fr = this->r()/255.0d;
+        float fg = this->g()/255.0d;
+        float fb = this->b()/255.0d;
 
         // Calculate values used to computation
         float max = std::max(std::max(fr, fg), fb);
@@ -62,30 +62,30 @@ namespace Splash {
         float delta = max - min;
 
         // Luminance
-        hsl.l = (max+min)/2;
+        hsl.l = (max+min)/2.0f;
 
         // Saturation
-        if (delta == 0) {
-            hsl.s = 0;
-            hsl.h = 0;
+        if (delta == 0.0f) {
+            hsl.s = 0.0f;
+            hsl.h = 0.0f;
             return hsl;
 
         } else {
-            hsl.s = delta/(1-std::abs(2*hsl.l-1));
+            hsl.s = delta/(1.0f-std::abs((2.0f*hsl.l)-1.0f));
         }
 
         // Hue
         if (max == fr) {
-            hsl.h = 60 * std::fmod(((fg - fb) / delta), 6);
+            hsl.h = 60.0f * std::fmod(((fg - fb) / delta), 6.0f);
         } else if (max == fg) {
-            hsl.h = 60 * (((fb - fr)/delta) + 2);
+            hsl.h = 60.0f * (((fb - fr)/delta) + 2.0f);
         } else if (max == fb) {
-            hsl.h = 60 * (((fr - fg)/delta) + 4);
+            hsl.h = 60.0f * (((fr - fg)/delta) + 4.0f);
         }
 
         // Ensure hue is positive
-        if (hsl.h < 0) {
-            hsl.h += 360;
+        if (hsl.h < 0.0f) {
+            hsl.h += 360.0f;
         }
 
         return hsl;
@@ -107,7 +107,7 @@ namespace Splash {
         this->value |= (b & 0xff);
     }
 
-    void Colour::setRaw(int raw) {
+    void Colour::setRaw(unsigned int raw) {
         this->value = raw;
     }
 

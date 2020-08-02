@@ -1,28 +1,29 @@
 #include "ColourUtils.hpp"
 #include "Swatch.hpp"
+#include <algorithm>
 
 // Constants
 #define MIN_CONTRAST_BODY_TEXT 4.5f
 #define MIN_CONTRAST_TITLE_TEXT 3.0f
 
 // Helper function to convert integer to hexadecimal string
-static std::string intToHex(int i) {
+static std::string intToHex(unsigned int i) {
     std::string str = "";
 
     // Repeat until number is zero
     while (i != 0) {
         int r = i%16;
         if (r < 10) {
-            str += ('0'+r);
+            str.insert(str.begin(), '0'+r);
         } else {
-            str += ('a'+r%10);
+            str.insert(str.begin(), 'a'+r%10);
         }
         i /= 16;
     }
 
     // If less than two chars pad with zero
-    while (str.length() < 2) {
-        str = str + "0";
+    while (str.length() < 8) {
+        str.insert(str.begin(), '0');
     }
 
     return str;
@@ -87,7 +88,7 @@ namespace Splash {
 
     Swatch::Swatch(Colour c, int pop) {
         this->colour = c;
-        this->colour.setA(0);
+        this->colour.setA(255);
         this->population = pop;
         this->coloursGenerated = false;
         this->valid = true;

@@ -1,26 +1,25 @@
 #ifndef SPLASH_TARGET_TARGET_HPP
 #define SPLASH_TARGET_TARGET_HPP
 
-#include <array>
+#include <vector>
 
 namespace Splash::Target {
     // A Target allows custom selection of colours in a Palette's generation
     class Target {
         private:
-            // Is any colour selected for this target exclusive to this target?
-            bool isExclusive_;
-
             // Initialize weights array with default values
             void setDefaultWeights();
             // Initialize given array with default values
-            void setTargetDefaultValues(std::array<float, 3> &);
-
+            void setTargetDefaultValues(std::vector<float> &);
 
         protected:
+            // Is any colour selected for this target exclusive to this target?
+            bool isExclusive_;
+
             // Arrays of target values
-            std::array<float, 3> lightnessTargets;
-            std::array<float, 3> saturationTargets;
-            std::array<float, 3> weights;
+            std::vector<float> lightnessTargets;
+            std::vector<float> saturationTargets;
+            std::vector<float> weights;
 
             // Functions called by derived instances to set up their values
             void setDefaultLightLightnessValues();

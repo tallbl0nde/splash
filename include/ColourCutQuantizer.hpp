@@ -52,23 +52,23 @@ namespace Splash {
                     Vbox splitBox();
 
                     // Return the dimension which this box is largest in
-                    Dimension getLongestColourDimension();
+                    Dimension getLongestColourDimension() const;
 
                     // Finds the point within the box's indexes of where to split
                     // Returns the index in the CCQ's colours vector to split from
                     size_t findSplitPoint();
 
                     // Returns the average colour of this box
-                    Swatch getAverageColour();
+                    Swatch getAverageColour() const;
 
                     // Modify the significant octet in a colour. Allows sorting based on the
                     // value of a single colour component
                     static void modifySignificantOctet(std::vector<int> &, Dimension, size_t, size_t);
 
                     // Return characteristics of box
-                    int getVolume();
-                    bool canSplit();
-                    int getColourCount();
+                    int getVolume() const;
+                    bool canSplit() const;
+                    int getColourCount() const;
             };
 
             // Comparator for Vboxes
@@ -89,7 +89,7 @@ namespace Splash {
 
             // Iterate through the given priority queue and split Vboxes until
             // the queue contains the given number of Vboxes
-            void splitBoxes(std::priority_queue<Vbox, std::vector<Vbox>, decltype(&VBOX_COMP)>, int);
+            void splitBoxes(std::priority_queue<Vbox, std::vector<Vbox>, decltype(&VBOX_COMP)> &, int);
 
             // Return the average colours in the given vector of Vboxes
             std::vector<Swatch> generateAverageColours(std::vector<Vbox> &);

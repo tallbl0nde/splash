@@ -1,4 +1,6 @@
 #include "target/Target.hpp"
+#include <cstddef>
+#include <iostream>
 
 // Constant values/indexes
 #define TARGET_DARK_LUMA 0.26f
@@ -50,18 +52,26 @@ namespace Splash::Target {
     }
 
     Target::Target() {
+        this->isExclusive_ = true;   // Defaults to true
+        this->lightnessTargets.resize(3, 0);
+        this->saturationTargets.resize(3, 0);
+        this->weights.resize(3, 0);
+
+        // Fill vectors with default values
         this->setDefaultWeights();
         this->setTargetDefaultValues(this->lightnessTargets);
         this->setTargetDefaultValues(this->saturationTargets);
     }
 
     Target::Target(const Target & t) {
+        this->isExclusive_ = t.isExclusive_;
         this->lightnessTargets = t.lightnessTargets;
         this->saturationTargets = t.saturationTargets;
         this->weights = t.weights;
     }
 
     Target::Target(const Target * t) {
+        this->isExclusive_ = t->isExclusive_;
         this->lightnessTargets = t->lightnessTargets;
         this->saturationTargets = t->saturationTargets;
         this->weights = t->weights;
@@ -73,7 +83,7 @@ namespace Splash::Target {
         this->weights[INDEX_WEIGHT_POP] = WEIGHT_POPULATION;
     }
 
-    void Target::setTargetDefaultValues(std::array<float, 3> & arr) {
+    void Target::setTargetDefaultValues(std::vector<float> & arr) {
         arr[INDEX_MIN] = 0.0f;
         arr[INDEX_TARGET] = 0.5f;
         arr[INDEX_MAX] = 1.0f;
@@ -203,18 +213,10 @@ namespace Splash::Target {
     }
 
     bool Target::operator==(const Target t) const {
-        for (size_t i = 0; i < 3; i++) {
-            if (this->lightnessTargets[i] != t.lightnessTargets[i]) {
-                return false;
-            }
-            if (this->saturationTargets[i] != t.saturationTargets[i]) {
-                return false;
-            }
-            if (this->weights[i] != t.weights[i]) {
-                return false;
-            }
-        }
-
-        return (this->isExclusive_ == t.isExclusive_);
+        bool notEqual = (this->lightnessTargets != t.lightnessTargets);
+        notEqual |= (this->saturationTargets != t.saturationTargets);
+        notEqual |= (this->weights != t.weights);
+        notEqual |= (this->isExclusive_ != t.isExclusive_);
+        return !notEqual;
     }
 };

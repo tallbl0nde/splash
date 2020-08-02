@@ -19,7 +19,7 @@ namespace Splash {
     class Colour {
         private:
             // ARGB colour stored as 0xAARRGGBB
-            int value;
+            unsigned int value;
 
         public:
             // Default constructor initializes to transpatrent black (0)
@@ -35,7 +35,7 @@ namespace Splash {
             int b() const;
 
             // Returns raw value
-            int raw() const;
+            unsigned int raw() const;
 
             // Converts value to HSL
             HSL hsl() const;
@@ -47,7 +47,7 @@ namespace Splash {
             void setB(int);
 
             // Set raw value
-            void setRaw(int);
+            void setRaw(unsigned int);
 
             // Print a string describing the contents
             std::string toString();

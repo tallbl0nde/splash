@@ -11,6 +11,8 @@
 #include <cmath>
 #include <limits>
 
+#include <iostream>
+
 // Constants
 #define DEFAULT_RESIZE_BITMAP_AREA (112 * 112)
 #define DEFAULT_CALCULATE_NUMBER_COLORS 16
@@ -121,6 +123,7 @@ namespace Splash {
             Target::Target target = this->targets[i];
             target.normalizeWeights();
             this->selectedSwatches[target] = this->generateScoredTarget(target);
+            std::cout << "set target " << i << " to have swatch " << this->selectedSwatches[target].toString() << (this->selectedSwatches[target].isValid() ? " VALID" : " INVALID") << std::endl;
         }
 
         // Now clear out used colours
@@ -193,6 +196,7 @@ namespace Splash {
 
     Colour Palette::getColourForTarget(const Target::Target & t, const Colour & c) {
         Swatch swatch = this->getSwatchForTarget(t);
+        std::cout << swatch.toString() << std::endl;
         return (swatch.isValid() ? swatch.getColour() : c);
     }
 
@@ -207,8 +211,8 @@ namespace Splash {
         this->region = Region{0, 0, b.getWidth(), b.getHeight()};
         this->swatches.clear();
 
-        this->maxColours = DEFAULT_RESIZE_BITMAP_AREA;
-        this->resizeArea = DEFAULT_CALCULATE_NUMBER_COLORS;
+        this->maxColours = DEFAULT_CALCULATE_NUMBER_COLORS;
+        this->resizeArea = DEFAULT_RESIZE_BITMAP_AREA;
 
         // Add default targets
         this->targets.push_back(Target::VIBRANT);
@@ -316,6 +320,9 @@ namespace Splash {
             std::vector<Colour> pixels = this->getPixelsFromBitmap(bmap);
             ColourCutQuantizer quantizer = ColourCutQuantizer(pixels, this->maxColours, this->filters);
             sws = quantizer.getQuantizedColours();
+            // for (size_t i = 0; i < sws.size(); i++) {
+            //     std::cout << i << ": " << sws[i].toString() << std::endl;
+            // }
 
         // Otherwise use provided swatches
         } else {

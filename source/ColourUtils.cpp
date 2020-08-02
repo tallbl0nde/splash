@@ -42,7 +42,7 @@ namespace Splash::ColourUtils {
         // Binary search to find a value that provides sufficient contrast
         int numIt = 0;
         int minAlpha = 0;
-        int maxAlpha = 0;
+        int maxAlpha = 255;
         while (numIt <= MIN_ALPHA_SEARCH_MAX_ITERATIONS && (maxAlpha-minAlpha) > MIN_ALPHA_SEARCH_PRECISION) {
             int testAlpha = (minAlpha + maxAlpha)/2;
 
@@ -87,22 +87,22 @@ namespace Splash::ColourUtils {
 
     double calculateLuminance(Colour & c) {
         XYZ xyz = colourToXYZ(c);
-        return xyz.y/100;
+        return xyz.y/100.0d;
     }
 
     XYZ colourToXYZ(Colour & c) {
         XYZ out;
 
-        double sr = c.r()/255.0;
-        sr = (sr < 0.04045 ? sr/12.92 : std::pow((sr + 0.055)/1.055, 2.4));
+        double sr = c.r()/255.0d;
+        sr = (sr < 0.04045d ? sr/12.92d : std::pow((sr + 0.055d)/1.055d, 2.4d));
         double sg = c.g()/255.0;
-        sg = (sg < 0.04045 ? sg/12.92 : std::pow((sg + 0.055)/1.055, 2.4));
+        sg = (sg < 0.04045d ? sg/12.92d : std::pow((sg + 0.055d)/1.055d, 2.4d));
         double sb = c.b()/255.0;
-        sb = (sb < 0.04045 ? sg/12.92 : std::pow((sb + 0.055)/1.055, 2.4));
+        sb = (sb < 0.04045d ? sg/12.92d : std::pow((sb + 0.055d)/1.055d, 2.4d));
 
-        out.x = 100 * (sr * 0.4124 + sg * 0.3576 + sb * 0.1805);
-        out.y = 100 * (sr * 0.2126 + sg * 0.7152 + sb * 0.0722);
-        out.z = 100 * (sr * 0.0193 + sg * 0.1192 + sb * 0.9505);
+        out.x = 100.0d * (sr * 0.4124d + sg * 0.3576d + sb * 0.1805d);
+        out.y = 100.0d * (sr * 0.2126d + sg * 0.7152d + sb * 0.0722d);
+        out.z = 100.0d * (sr * 0.0193d + sg * 0.1192d + sb * 0.9505d);
 
         return out;
     }
