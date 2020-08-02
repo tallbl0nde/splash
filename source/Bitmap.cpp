@@ -42,6 +42,11 @@ namespace Splash {
     std::vector<Colour> Bitmap::getPixels(size_t x, size_t y, size_t w, size_t h) const {
         std::vector<Colour> v;
 
+        // Don't bother checking if requesting pixels outside of dimensions
+        if (x > this->grid.size() || y > this->grid[0].size()) {
+            return v;
+        }
+
         // Ensure width and height are within bounds while checking
         h = (h > this->grid.size()-y ? this->grid.size()-y : h);
         for (size_t r = y; r < y+h; r++) {
@@ -72,6 +77,7 @@ namespace Splash {
                 }
 
                 this->grid[r][c] = cols[nextIdx];
+                nextIdx++;
             }
         }
         return nextIdx;
