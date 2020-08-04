@@ -9,16 +9,6 @@ namespace Splash {
     }
 
     Colour::Colour(int a, int r, int g, int b) {
-        // Ensure values are within range
-        a = (a < 0 ? 0 : a);
-        a = (a > 255 ? 255 : a);
-        r = (r < 0 ? 0 : r);
-        r = (r > 255 ? 255 : r);
-        g = (g < 0 ? 0 : g);
-        g = (g > 255 ? 255 : g);
-        b = (b < 0 ? 0 : b);
-        b = (b > 255 ? 255 : b);
-
         // Encode value
         this->value = 0;
         this->setA(a);
@@ -92,18 +82,22 @@ namespace Splash {
     }
 
     void Colour::setA(int a) {
+        this->value &= ~(0xff << 24);
         this->value |= (a & 0xff) << 24;
     }
 
     void Colour::setR(int r) {
+        this->value &= ~(0xff << 16);
         this->value |= (r & 0xff) << 16;
     }
 
     void Colour::setG(int g) {
+        this->value &= ~(0xff << 8);
         this->value |= (g & 0xff) << 8;
     }
 
     void Colour::setB(int b) {
+        this->value &= ~(0xff);
         this->value |= (b & 0xff);
     }
 
