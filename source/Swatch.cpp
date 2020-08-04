@@ -116,10 +116,11 @@ namespace Splash {
         return this->bodyTextColour;
     }
 
-    std::string Swatch::toString() const {
+    std::string Swatch::toString() {
+        this->generateColours();
         HSL hsl = this->colour.hsl();
         std::string str = "[RGB: #" + intToHex(this->colour.raw()) + "] ";
-        str += "[HSL: " + std::to_string(hsl.h) + ", " + std::to_string(hsl.s) + ", " + std::to_string(hsl.l) + "] ";
+        str += "[HSL: [" + std::to_string(hsl.h) + ", " + std::to_string(hsl.s) + ", " + std::to_string(hsl.l) + "]] ";
         str += "[Population: " + std::to_string(this->population) + "] ";
         str += "[Title Text: #" + intToHex(this->titleTextColour.raw()) + "] ";
         str += "[Body Text: #" + intToHex(this->bodyTextColour.raw()) + "]";

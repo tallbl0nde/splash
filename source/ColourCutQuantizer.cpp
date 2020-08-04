@@ -3,8 +3,6 @@
 #include <cmath>
 #include <limits>
 
-#include <iostream>
-
 // Constants
 #define QUANTIZE_WORD_WIDTH 5
 #define QUANTIZE_WORD_MASK ((1 << QUANTIZE_WORD_WIDTH) - 1)
@@ -55,15 +53,9 @@ namespace Splash {
                 this->minB = b;
             }
         }
-
-        std::cout << "minR " << minR << " maxR " << maxR << " minG " << minG << " maxG " << maxG << " minB " << minB << " maxB " << maxB << std::endl;
     }
 
     ColourCutQuantizer::Vbox ColourCutQuantizer::Vbox::splitBox() {
-        if (!canSplit()) {
-            std::cout << "CANT SPLIT" << std::endl;
-        }
-
         // The Java library throws an exception here, we're going to assume it can be split
         size_t splitPoint = this->findSplitPoint();
 
@@ -94,12 +86,11 @@ namespace Splash {
     size_t ColourCutQuantizer::Vbox::findSplitPoint() {
         // Get longest dimension and copy of colours vector
         Dimension longD = this->getLongestColourDimension();
-        std::cout << "CCQ: FSP: longest dimension: " << (int)longD << std::endl;
 
         // Modify each colour so it's most significant is the desired dimension
         this->modifySignificantOctet(this->ccq->colours, longD, this->lowerIndex, this->upperIndex);
         // Sort colours based on longest colour dimension
-        std::sort(this->ccq->colours.begin(), this->ccq->colours.end());
+        std::stable_sort(this->ccq->colours.begin() + this->lowerIndex, this->ccq->colours.begin() + this->upperIndex + 1);
         // Now revert back to RGB format
         this->modifySignificantOctet(this->ccq->colours, longD, this->lowerIndex, this->upperIndex);
 
@@ -109,7 +100,6 @@ namespace Splash {
         for (size_t i = this->lowerIndex; i <= this->upperIndex; i++) {
             count += this->ccq->histogram[this->ccq->colours[i]];
             if (count >= midPoint) {
-                std::cout << "split - 1" << std::endl;
                 return std::min(this->upperIndex - 1, i);
             }
         }
@@ -156,7 +146,7 @@ namespace Splash {
                 // Swap R and G
                 for (size_t i = lower; i <= upper; i++) {
                     int col = cols[i];
-                    cols[i] = (quantizedComponent(col, Dimension::Green) << (QUANTIZE_WORD_WIDTH*2)) | (quantizedComponent(col, Dimension::Red) << QUANTIZE_WORD_WIDTH) | quantizedComponent(col, Dimension::Blue);
+                    cols[i] = (quantizedComponent(col, Dimension::Green) << (QUANTIZE_WORD_WIDTH + QUANTIZE_WORD_WIDTH)) | (quantizedComponent(col, Dimension::Red) << QUANTIZE_WORD_WIDTH) | quantizedComponent(col, Dimension::Blue);
                 }
                 break;
 
@@ -164,7 +154,7 @@ namespace Splash {
                 // Swap R and B
                 for (size_t i = lower; i <= upper; i++) {
                     int col = cols[i];
-                    cols[i] = (quantizedComponent(col, Dimension::Blue) << (QUANTIZE_WORD_WIDTH*2)) | (quantizedComponent(col, Dimension::Green) << QUANTIZE_WORD_WIDTH) | quantizedComponent(col, Dimension::Red);
+                    cols[i] = (quantizedComponent(col, Dimension::Blue) << (QUANTIZE_WORD_WIDTH + QUANTIZE_WORD_WIDTH)) | (quantizedComponent(col, Dimension::Green) << QUANTIZE_WORD_WIDTH) | quantizedComponent(col, Dimension::Red);
                 }
                 break;
         }
@@ -226,7 +216,6 @@ namespace Splash {
                 index++;
             }
         }
-        std::cout << "CCQ: Have distinct colours: " << this->colours.size() << std::endl;
 
         // If the image has fewer colours than requested, use these colours
         if (count <= maxColours) {
@@ -240,7 +229,6 @@ namespace Splash {
 
         // Otherwise use quantization to reduce number of colours
         } else {
-            std::cout << "CCQ: Quantizing pixels" << std::endl;
             this->quantizedColours = quantizePixels(maxColours);
         }
     }
@@ -262,12 +250,10 @@ namespace Splash {
 
         // Need to convert priority queue to vector at this point
         std::vector<Vbox> vec;
-        std::cout << "pq.size: " << pq.size() << std::endl;
         while (!pq.empty()) {
             vec.push_back(pq.top());
             pq.pop();
         }
-        std::cout << "vec size: " << vec.size() << std::endl;
 
         // Return average colours of each box
         return this->generateAverageColours(vec);
@@ -283,10 +269,8 @@ namespace Splash {
             // Print queue
             std::priority_queue<Vbox, std::vector<Vbox>, decltype(&VBOX_COMP)> copy = queue;
             while (!copy.empty()) {
-                std::cout << "CCQ: PQ: " << copy.top().getVolume() << " " << copy.top().getColourCount() << std::endl;
                 copy.pop();
             }
-            std::cout << "=====" << std::endl;
 
             // Otherwise get top box and split if possible
             Vbox vbox = queue.top();
@@ -310,8 +294,6 @@ namespace Splash {
             // As the colour is averaged it may not be a colour we want
             if (!this->shouldIgnoreColour888(swatch.getColour().raw())) {
                 swatches.push_back(swatch);
-            } else {
-                std::cout << "IGNORED:::" << swatch.toString() << std::endl;
             }
         }
         return swatches;
@@ -371,7 +353,7 @@ namespace Splash {
     int ColourCutQuantizer::quantizedComponent(int c, Dimension d) {
         switch (d) {
             case Dimension::Red:
-                return ((c >> (QUANTIZE_WORD_WIDTH*2)) & QUANTIZE_WORD_MASK);
+                return ((c >> (QUANTIZE_WORD_WIDTH + QUANTIZE_WORD_WIDTH)) & QUANTIZE_WORD_MASK);
                 break;
 
             case Dimension::Green:

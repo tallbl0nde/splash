@@ -1,6 +1,5 @@
 #include "target/Target.hpp"
 #include <cstddef>
-#include <iostream>
 
 // Constant values/indexes
 #define TARGET_DARK_LUMA 0.26f

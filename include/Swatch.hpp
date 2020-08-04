@@ -50,7 +50,7 @@ namespace Splash {
             Colour getBodyTextColour();
 
             // Return the contents of the swatch as a string
-            std::string toString() const;
+            std::string toString();
     };
 }
 
