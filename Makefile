@@ -15,10 +15,10 @@ SOURCE		:=	source
 CXXFLAGS	:=	-std=c++11 -Wall -O3 -I$(INCLUDE)
 
 # Variables which store file locations
-CPPFILES 	:= $(shell find $(SOURCE)/ -name "*.cpp")
-OBJS     	:= $(CPPFILES:$(SOURCE)/%.cpp=$(OBJDIR)/%.o)
-DEPS     	:= $(CPPFILES:$(SOURCE)/%.cpp=$(DEPDIR)/%.d)
-TREE     	:= $(sort $(patsubst %/,%,$(dir $(OBJS))))
+CPPFILES	:=	$(shell find $(SOURCE)/ -name "*.cpp")
+OBJS		:=	$(CPPFILES:$(SOURCE)/%.cpp=$(OBJDIR)/%.o)
+DEPS		:=	$(CPPFILES:$(SOURCE)/%.cpp=$(DEPDIR)/%.d)
+TREE		:=	$(sort $(patsubst %/,%,$(dir $(OBJS))))
 
 # Include dependency files if they already exist
 ifeq "$(MAKECMDGOALS)" ""

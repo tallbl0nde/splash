@@ -1,4 +1,4 @@
-# Splash
+# Splash ![Build Status](https://github.com/tallbl0nde/splash/workflows/Build/badge.svg)
 
 A work-in-progress C++ port of Android's Palette API
 
