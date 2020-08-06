@@ -126,4 +126,12 @@ namespace Splash {
         str += "[Body Text: #" + intToHex(this->bodyTextColour.raw()) + "]";
         return str;
     }
+
+    bool Swatch::operator==(const Swatch t) const {
+        // We don't care if the colours are generated here
+        bool notEqual = (this->valid != t.valid);
+        notEqual |= (this->population != t.population);
+        notEqual |= (this->colour.raw() != t.colour.raw());
+        return !notEqual;
+    }
 };

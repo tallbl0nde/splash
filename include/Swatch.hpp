@@ -51,6 +51,9 @@ namespace Splash {
 
             // Return the contents of the swatch as a string
             std::string toString();
+
+            // Equality operator
+            bool operator==(const Swatch) const;
     };
 }
 

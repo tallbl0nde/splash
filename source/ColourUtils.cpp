@@ -162,7 +162,7 @@ namespace Splash::ColourUtils {
     }
 
     double pivotXyzComponent(double component) {
-        return (component > XYZ_EPSILON ? std::pow(component, 1/3.0d) : (XYZ_KAPPA * component + 16)/116);
+        return (component > XYZ_EPSILON ? std::pow(component, 1/3.0d) : (XYZ_KAPPA * component + 16)/116.0d);
     }
 
     bool satisfiesTextContrast(Colour & bg, Colour & fg) {
@@ -235,6 +235,9 @@ namespace Splash::ColourUtils {
         b = b > 0.0031308d ? 1.055d * std::pow(b, 1.0d / 2.4d) - 0.055d : 12.92d * b;
 
         // Ensure within bounds
+        r = std::round(255 * r);
+        g = std::round(255 * g);
+        b = std::round(255 * b);
         r = (r < 0 ? 0 : r);
         r = (r > 255 ? 255 : r);
         g = (g < 0 ? 0 : g);
