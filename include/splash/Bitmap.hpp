@@ -1,7 +1,7 @@
 #ifndef SPLASH_BITMAP_HPP
 #define SPLASH_BITMAP_HPP
 
-#include "Colour.hpp"
+#include "splash/Colour.hpp"
 #include <cstddef>
 #include <vector>
 

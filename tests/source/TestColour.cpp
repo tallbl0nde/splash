@@ -1,7 +1,7 @@
 // This file tests the Colour class
 #include "catch.hpp"
 
-#include "Colour.hpp"
+#include "splash/Splash.hpp"
 using namespace Splash;
 
 TEST_CASE("Colour: Should default to fully transparent black (0x00000000)", "[colour]") {

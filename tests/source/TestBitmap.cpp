@@ -1,7 +1,7 @@
 // This file tests the Bitmap class
 #include "catch.hpp"
+#include "splash/Splash.hpp"
 
-#include "Bitmap.hpp"
 using namespace Splash;
 
 TEST_CASE("Bitmap: A default bitmap should always be invalid", "[bitmap]") {

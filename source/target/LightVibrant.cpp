@@ -1,4 +1,4 @@
-#include "target/LightVibrant.hpp"
+#include "splash/target/LightVibrant.hpp"
 
 namespace Splash::Target {
     LightVibrant::LightVibrant() : Target() {

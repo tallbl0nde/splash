@@ -1,7 +1,7 @@
 #ifndef SPLASH_SWATCH_HPP
 #define SPLASH_SWATCH_HPP
 
-#include "Colour.hpp"
+#include "splash/Colour.hpp"
 #include <string>
 
 namespace Splash {

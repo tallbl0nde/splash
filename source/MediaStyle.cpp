@@ -1,7 +1,7 @@
-#include "BlackWhiteFilter.hpp"
-#include "ColourUtils.hpp"
-#include "HueFilter.hpp"
-#include "MediaStyle.hpp"
+#include "splash/ColourUtils.hpp"
+#include "splash/filter/BlackWhite.hpp"
+#include "splash/filter/Hue.hpp"
+#include "splash/MediaStyle.hpp"
 #include <cmath>
 
 // Constants
@@ -92,10 +92,10 @@ namespace Splash {
         // Get colours
         this->backgroundColour = this->findBackgroundColour();
         if (!this->emptyHSL) {
-            HueFilter * f = new HueFilter(this);
+            Filter::Hue * f = new Filter::Hue(this->filteredBackgroundHSL.h);
             builder.addFilter(f);
         }
-        BlackWhiteFilter * ff = new BlackWhiteFilter();
+        Filter::BlackWhite * ff = new Filter::BlackWhite();
         builder.addFilter(ff);
         palette = builder.generate();
         fgColour = this->selectForegroundColour(this->backgroundColour, palette);

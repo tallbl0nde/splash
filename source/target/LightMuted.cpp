@@ -1,4 +1,4 @@
-#include "target/LightMuted.hpp"
+#include "splash/target/LightMuted.hpp"
 
 namespace Splash::Target {
     LightMuted::LightMuted() : Target() {

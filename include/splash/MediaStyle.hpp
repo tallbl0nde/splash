@@ -1,7 +1,7 @@
 #ifndef SPLASH_MEDIASTYLE_HPP
 #define SPLASH_MEDIASTYLE_HPP
 
-#include "Palette.hpp"
+#include "splash/Palette.hpp"
 
 namespace Splash {
     // Uses the Palette API to generate appropriate colours to show for an album cover
@@ -40,9 +40,6 @@ namespace Splash {
             Swatch selectMutedCandidate(Swatch &, Swatch &);
             // Return a Swatch that qualifies as vibrant (may not be valid!)
             Swatch selectVibrantCandidate(Swatch &, Swatch &);
-
-            // Filter specific to this class
-            class HueFilter;
 
         public:
             // Constructor generates palette (may want to use another thread)

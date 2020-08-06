@@ -1,7 +1,7 @@
 #ifndef SPLASH_COLOURUTILS_HPP
 #define SPLASH_COLOURUTILS_HPP
 
-#include "Colour.hpp"
+#include "splash/Colour.hpp"
 
 namespace Splash::ColourUtils {
     // Struct representing colour value in LAB

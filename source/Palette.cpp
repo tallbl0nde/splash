@@ -1,12 +1,12 @@
-#include "ColourCutQuantizer.hpp"
-#include "DefaultFilter.hpp"
-#include "Palette.hpp"
-#include "target/DarkMuted.hpp"
-#include "target/DarkVibrant.hpp"
-#include "target/Muted.hpp"
-#include "target/LightMuted.hpp"
-#include "target/LightVibrant.hpp"
-#include "target/Vibrant.hpp"
+#include "splash/ColourCutQuantizer.hpp"
+#include "splash/filter/Default.hpp"
+#include "splash/Palette.hpp"
+#include "splash/target/DarkMuted.hpp"
+#include "splash/target/DarkVibrant.hpp"
+#include "splash/target/Muted.hpp"
+#include "splash/target/LightMuted.hpp"
+#include "splash/target/LightVibrant.hpp"
+#include "splash/target/Vibrant.hpp"
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -203,7 +203,7 @@ namespace Splash {
     Palette::Builder::Builder(const Bitmap & b) {
         // Initialize members
         this->bitmap = b;
-        this->filters.push_back(new DefaultFilter());
+        this->filters.push_back(new Filter::Default());
         this->region = Region{0, 0, b.getWidth(), b.getHeight()};
         this->swatches.clear();
 
@@ -220,7 +220,7 @@ namespace Splash {
     }
 
     Palette::Builder::Builder(const std::vector<Swatch> & s) {
-        this->filters.push_back(new DefaultFilter());
+        this->filters.push_back(new Filter::Default());
         this->swatches = s;
     }
 
@@ -264,7 +264,7 @@ namespace Splash {
         return *this;
     }
 
-    Palette::Builder & Palette::Builder::addFilter(Filter * f) {
+    Palette::Builder & Palette::Builder::addFilter(Filter::Filter * f) {
         if (f != nullptr) {
             this->filters.push_back(f);
         }

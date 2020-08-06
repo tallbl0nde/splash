@@ -1,4 +1,4 @@
-#include "target/Target.hpp"
+#include "splash/target/Target.hpp"
 #include <cstddef>
 
 // Constant values/indexes

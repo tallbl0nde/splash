@@ -1,8 +1,8 @@
 #ifndef SPLASH_COLOURCUTQUANTIZER_HPP
 #define SPLASH_COLOURCUTQUANTIZER_HPP
 
-#include "Filter.hpp"
-#include "Swatch.hpp"
+#include "splash/filter/Filter.hpp"
+#include "splash/Swatch.hpp"
 #include <queue>
 #include <vector>
 
@@ -80,7 +80,7 @@ namespace Splash {
             std::vector<int> histogram;
 
             // Pointers to passed filters (not deleted!)
-            std::vector<Filter *> filters;
+            std::vector<Filter::Filter *> filters;
             // Quantized colours stored as Swatches
             std::vector<Swatch> quantizedColours;
 
@@ -111,7 +111,7 @@ namespace Splash {
         public:
             // Constructor takes pixels (vector of colours), maximum number of colours in resulting
             // palette and a vector of filters to use for quantization
-            ColourCutQuantizer(std::vector<Colour> &, int, std::vector<Filter *> &);
+            ColourCutQuantizer(std::vector<Colour> &, int, std::vector<Filter::Filter *> &);
 
             // Returns vector of quantized colours as Swatches
             std::vector<Swatch> getQuantizedColours();

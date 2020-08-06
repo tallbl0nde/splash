@@ -1,12 +1,12 @@
-#ifndef SPLASH_BLACKWHITEFILTER_HPP
-#define SPLASH_BLACKWHITEFILTER_HPP
+#ifndef SPLASH_FILTER_BLACKWHITE_HPP
+#define SPLASH_FILTER_BLACKWHITE_HPP
 
-#include "Filter.hpp"
+#include "splash/filter/Filter.hpp"
 
-namespace Splash {
+namespace Splash::Filter {
     // Inherits and extends filter to which allows colours that aren't
     // close to black or white
-    class BlackWhiteFilter : public Filter {
+    class BlackWhite : public Filter {
         private:
             // Returns whether the colour is either white or black
             bool isWhiteOrBlack(Colour &);

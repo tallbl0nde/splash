@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <cmath>
-#include "ColourUtils.hpp"
+#include "splash/ColourUtils.hpp"
 
 // Constant magic numbers
 #define MIN_ALPHA_SEARCH_MAX_ITERATIONS 10

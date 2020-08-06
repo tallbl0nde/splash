@@ -1,4 +1,4 @@
-#include "target/DarkVibrant.hpp"
+#include "splash/target/DarkVibrant.hpp"
 
 namespace Splash::Target {
     DarkVibrant::DarkVibrant() : Target() {

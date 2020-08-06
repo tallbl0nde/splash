@@ -1,10 +1,10 @@
 #ifndef SPLASH_PALETTE_HPP
 #define SPLASH_PALETTE_HPP
 
-#include "Bitmap.hpp"
-#include "Filter.hpp"
-#include "Swatch.hpp"
-#include "target/Target.hpp"
+#include "splash/Bitmap.hpp"
+#include "splash/filter/Filter.hpp"
+#include "splash/Swatch.hpp"
+#include "splash/target/Target.hpp"
 #include <memory>
 #include <unordered_map>
 
@@ -126,7 +126,7 @@ namespace Splash {
                     };
 
                     // List of filters
-                    std::vector<Filter *> filters;
+                    std::vector<Filter::Filter *> filters;
 
                     // Vectors to eventually pass to Palette constructor
                     std::vector<Swatch> swatches;
@@ -171,7 +171,7 @@ namespace Splash {
                     // Add a filter to control which colours are allowed in the
                     // resulting palette. Note that this takes a pointer, delete
                     // WILL be called on the object when the Builder is destroyed
-                    Builder & addFilter(Filter *);
+                    Builder & addFilter(Filter::Filter *);
 
                     // Set a region of the Bitmap to be used exclusively when
                     // constructing the palette

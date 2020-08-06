@@ -1,12 +1,12 @@
-#ifndef SPLASH_DEFAULTFILTER_HPP
-#define SPLASH_DEFAULTFILTER_HPP
+#ifndef SPLASH_FILTER_DEFAULT_HPP
+#define SPLASH_FILTER_DEFAULT_HPP
 
-#include "Filter.hpp"
+#include "splash/filter/Filter.hpp"
 
-namespace Splash {
+namespace Splash::Filter {
     // Inherits and extends filter to form the default filter.
     // Allows any colour that isn't black, white or near red side of I line.
-    class DefaultFilter : public Filter {
+    class Default : public Filter {
         private:
             // Returns true if the colour is close to black
             bool isBlack(HSL &);

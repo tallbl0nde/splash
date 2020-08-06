@@ -1,5 +1,5 @@
-#include "ColourUtils.hpp"
-#include "Swatch.hpp"
+#include "splash/ColourUtils.hpp"
+#include "splash/Swatch.hpp"
 #include <algorithm>
 
 // Constants

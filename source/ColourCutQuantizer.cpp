@@ -1,4 +1,4 @@
-#include "ColourCutQuantizer.hpp"
+#include "splash/ColourCutQuantizer.hpp"
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -177,7 +177,7 @@ namespace Splash {
         return lhs.getVolume() < rhs.getVolume();
     };
 
-    ColourCutQuantizer::ColourCutQuantizer(std::vector<Colour> & pixels, int maxColours, std::vector<Filter *> & fs) {
+    ColourCutQuantizer::ColourCutQuantizer(std::vector<Colour> & pixels, int maxColours, std::vector<Filter::Filter *> & fs) {
         this->filters = fs;
 
         // First convert from Colours to raw ints

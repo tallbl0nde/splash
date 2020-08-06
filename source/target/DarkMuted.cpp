@@ -1,4 +1,4 @@
-#include "target/DarkMuted.hpp"
+#include "splash/target/DarkMuted.hpp"
 
 namespace Splash::Target {
     DarkMuted::DarkMuted() : Target() {

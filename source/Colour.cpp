@@ -1,4 +1,4 @@
-#include "Colour.hpp"
+#include "splash/Colour.hpp"
 
 #include <algorithm>
 #include <cmath>

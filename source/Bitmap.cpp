@@ -1,4 +1,4 @@
-#include "Bitmap.hpp"
+#include "splash/Bitmap.hpp"
 #include <cmath>
 
 namespace Splash {
