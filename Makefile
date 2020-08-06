@@ -26,31 +26,37 @@ ifeq "$(MAKECMDGOALS)" ""
 endif
 
 # Define virtual make targets
-.PHONY: all clean-all library clean-library tests clean-tests run-tests help
+.PHONY: all clean-all example clean-example library clean-library tests clean-tests run-tests help
 
 # 'help' displays the available targets
 help:
 	@echo "----------------------------------------------------------------"
 	@echo "The following targets are available:"
 	@echo "----------------------------------------------------------------"
-	@echo "all: compile the library, tests and run the tests"
+	@echo "all: compile the example, library and tests"
+	@echo "example: compile the example program"
 	@echo "library: compile the library"
 	@echo "tests: compile (but do not run) the test cases"
 	@echo "run-tests: run (and compile if necessary) the test cases"
 	@echo "----------------------------------------------------------------"
 	@echo "clean-all: clean all build files"
+	@echo "clean-example: clean example build files"
 	@echo "clean-library: clean library build files"
 	@echo "clean-tests: clean test build files"
 	@echo "----------------------------------------------------------------"
 
-# 'all' compiles the library, tests and runs the tests
-all: run-tests
+# 'all' compiles the example, library, tests and runs the tests
+all: example tests
+
+# 'example' compiles the example program
+example: library
+	@$(MAKE) -s -C example/ compile
 
 # 'library' compiles the library
 library: $(OUTPUT)
 
 # 'tests' compiles the tests (in other Makefile)
-tests:
+tests: library
 	@$(MAKE) -s -C tests/ compile
 
 # 'run-tests' compiles and runs the tests (in other Makefile)
@@ -58,7 +64,11 @@ run-tests: library
 	@$(MAKE) -s -C tests/ run
 
 # 'clean-all' removes all build files
-clean-all: clean-library clean-tests
+clean-all: clean-example clean-library clean-tests
+
+# 'clean-example' removes all example build files
+clean-example:
+	@$(MAKE) -s -C example/ clean
 
 # 'clean-library' only removes library related build files
 clean-library:

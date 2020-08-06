@@ -2,11 +2,15 @@
 
 A C++ port of Android's Palette API with some bonus features!
 
+![Example](example.png)
+
 ## Building
 
 Simply run the 'library' target by executing (requires a C++11 compatible compiler):
 
-`make library -j$(nproc)`
+```bash
+make library -j$(nproc)
+```
 
 This will use the optimal number of threads to compile the library.
 
