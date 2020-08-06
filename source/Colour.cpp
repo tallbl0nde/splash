@@ -1,5 +1,5 @@
 #include "splash/Colour.hpp"
-
+#include "splash/Utils.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -106,6 +106,6 @@ namespace Splash {
     }
 
     std::string Colour::toString() {
-        return "A: " + std::to_string(this->a()) + " R: " + std::to_string(this->r()) + " G: " + std::to_string(this->g()) + " B: " + std::to_string(this->b());
+        return "[RGB: #" + Utils::intToHexString(this->raw()) + "]";
     }
 };

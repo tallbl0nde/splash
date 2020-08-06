@@ -1,33 +1,11 @@
 #include "splash/ColourUtils.hpp"
 #include "splash/Swatch.hpp"
+#include "splash/Utils.hpp"
 #include <algorithm>
 
 // Constants
 #define MIN_CONTRAST_BODY_TEXT 4.5f
 #define MIN_CONTRAST_TITLE_TEXT 3.0f
-
-// Helper function to convert integer to hexadecimal string
-static std::string intToHex(unsigned int i) {
-    std::string str = "";
-
-    // Repeat until number is zero
-    while (i != 0) {
-        int r = i%16;
-        if (r < 10) {
-            str.insert(str.begin(), '0'+r);
-        } else {
-            str.insert(str.begin(), 'a'+r%10);
-        }
-        i /= 16;
-    }
-
-    // If less than two chars pad with zero
-    while (str.length() < 8) {
-        str.insert(str.begin(), '0');
-    }
-
-    return str;
-}
 
 namespace Splash {
     // Colours
@@ -119,11 +97,11 @@ namespace Splash {
     std::string Swatch::toString() {
         this->generateColours();
         HSL hsl = this->colour.hsl();
-        std::string str = "[RGB: #" + intToHex(this->colour.raw()) + "] ";
+        std::string str = "[RGB: #" + Utils::intToHexString(this->colour.raw()) + "] ";
         str += "[HSL: [" + std::to_string(hsl.h) + ", " + std::to_string(hsl.s) + ", " + std::to_string(hsl.l) + "]] ";
         str += "[Population: " + std::to_string(this->population) + "] ";
-        str += "[Title Text: #" + intToHex(this->titleTextColour.raw()) + "] ";
-        str += "[Body Text: #" + intToHex(this->bodyTextColour.raw()) + "]";
+        str += "[Title Text: #" + Utils::intToHexString(this->titleTextColour.raw()) + "] ";
+        str += "[Body Text: #" + Utils::intToHexString(this->bodyTextColour.raw()) + "]";
         return str;
     }
 
